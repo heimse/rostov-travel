@@ -190,9 +190,9 @@ export default function RoutesScreen() {
 
             {item.legs.length > 0 && (
               <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.legsRow}>
-                {React.Children.toArray(item.legs.map((leg) => (
-                  <LegItem leg={leg} />
-                )))}
+                {item.legs.map((leg, idx) => (
+                  <LegItem key={`${item.id}-leg-${idx}`} leg={leg} />
+                ))}
               </ScrollView>
             )}
           </Pressable>

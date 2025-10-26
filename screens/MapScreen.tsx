@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View, Text, StyleSheet, Pressable, TextInput, ScrollView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import MapView, { Marker, Region } from 'react-native-maps';
+import MapView, { Marker, Region, PROVIDER_GOOGLE } from 'react-native-maps';
 import { useNavigation } from '@react-navigation/native';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { fetchPlaces, cityFromAddress, normalizeCategory, parseLatLon } from './api';
@@ -123,6 +123,8 @@ export default function MapScreen() {
     []
   );
 
+  const [mapReady, setMapReady] = React.useState(false);
+
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <View style={styles.topBar}>
@@ -180,11 +182,19 @@ export default function MapScreen() {
             <Text style={styles.centerErrorText}>Проверьте подключение к интернету и попробуйте снова.</Text>
           </View>
         ) : (
-          <MapView style={StyleSheet.absoluteFill} initialRegion={initialRegion}>
-            {filtered.map((p) => (
+          <MapView 
+            style={StyleSheet.absoluteFill} 
+            initialRegion={initialRegion}
+            provider={Platform.OS === 'android' ? PROVIDER_GOOGLE : undefined}
+            onMapReady={() => setMapReady(true)}
+            loadingEnabled={true}
+            loadingIndicatorColor="#2E63E6"
+            loadingBackgroundColor="#0B1220"
+            moveOnMarkerPress={false}
+          >
+            {mapReady && filtered.map((p) => (
               <Marker
-                {...({ key: p.id } as any)}
-                identifier={p.id}
+                key={p.id}
                 coordinate={{ latitude: p.latitude, longitude: p.longitude }}
                 title={p.title}
                 description={p.description}

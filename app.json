@@ -12,7 +12,11 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Это приложение использует ваше местоположение для показа достопримечательностей рядом с вами на карте.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Это приложение использует ваше местоположение для показа достопримечательностей рядом с вами на карте."
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -21,7 +25,13 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.heimseweb.rostovtravel"
+      "package": "com.heimseweb.rostovtravel",
+      "permissions": ["ACCESS_FINE_LOCATION", "ACCESS_COARSE_LOCATION"],
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyDjsJg9qjUE6EJSfp1WBmDus6HfYdCkcOo"
+        }
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"

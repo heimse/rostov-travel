@@ -13,6 +13,7 @@ import AuthScreen from './screens/AuthScreen';
 import RoutesScreen from './screens/RoutesScreen';
 import RouteBuilderScreen from './screens/RouteBuilderScreen';
 import RouteDetailScreen from './screens/RouteDetailScreen';
+import AIChatScreen from './screens/AIChatScreen';
 import { PreferencesProvider, PreferencesContext } from './screens/preferencesContext';
 
 type RootStackParamList = {
@@ -33,6 +34,7 @@ type RootStackParamList = {
     stops: { attraction: any; dwellMin: number }[];
     legs: { mode: 'walk' | 'bus' | 'car' | 'train'; durationMin: number; distanceKm?: number; note?: string }[];
   };
+  AIChat: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -87,6 +89,7 @@ function NavigationContent() {
             <Stack.Screen name="Routes" component={RoutesScreen} options={{ headerShown: false }} />
             <Stack.Screen name="RouteBuilder" component={RouteBuilderScreen} options={{ headerShown: false }} />
             <Stack.Screen name="RouteDetail" component={RouteDetailScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="AIChat" component={AIChatScreen} options={{ headerShown: false }} />
           </>
         ) : (
           <Stack.Screen name="Auth" component={AuthScreen} options={{ headerShown: false }} />

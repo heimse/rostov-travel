@@ -67,7 +67,7 @@ export default function HomeScreen() {
       { key: 'plan', label: 'Начать планирование', icon: 'playlist-edit' },
       { key: 'interests', label: 'Выбрать интересы', icon: 'tune' },
       { key: 'sights', label: 'Достопримечательности', icon: 'map-marker-outline' },
-      // { key: 'ai', label: 'ИИ-помощник', icon: 'robot-outline' },
+      { key: 'ai', label: 'ИИ-помощник', icon: 'robot-outline' },
       { key: 'routes', label: 'Маршруты', icon: 'routes' },
       { key: 'map', label: 'Интерактивная карта', icon: 'map-outline' },
     ],
@@ -121,6 +121,8 @@ export default function HomeScreen() {
                       navigation.navigate('Interests');
                     } else if (feature.key === 'profile') {
                       navigation.navigate('Profile');
+                    } else if (feature.key === 'ai') {
+                      navigation.navigate('AIChat');
                     }
                   }}
                 />
